@@ -70,6 +70,8 @@ class Release extends Base implements TaskInterface
 		$github = $this->getGithub();
 		$changesInRelease = "# Changelog: \n\n" . implode("\n* ", $changes);
 
+		$this->say($changesInRelease);
+
 		$response = $github->repositories->releases->create(
 			$owner,
 			$repository,
@@ -95,7 +97,7 @@ class Release extends Base implements TaskInterface
 	 *
 	 * @return array
 	 */
-	private function getChanges($latest_release = false, $pulls)
+	protected function getChanges($latest_release = false, $pulls)
 	{
 		$changes = array();
 
